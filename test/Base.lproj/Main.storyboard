@@ -15,7 +15,87 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" xcode11CocoaTouchSystemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Значение счётчика: 0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="counterLabel">
+                                <rect key="frame" x="20" y="100" width="335" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <color key="textColor" systemColor="labelColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="custom" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="minusButton">
+                                <rect key="frame" x="50" y="200" width="80" height="80"/>
+                                <color key="backgroundColor" systemColor="systemBlueColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="80" id="minusWidth"/>
+                                    <constraint firstAttribute="height" constant="80" id="minusHeight"/>
+                                </constraints>
+                                <state key="normal" title="−"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="32"/>
+                                <color key="titleColor" systemColor="whiteColor"/>
+                                <color key="titleShadowColor" systemColor="whiteColor"/>
+                                <connections>
+                                    <action selector="minusButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="minusAction"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="custom" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="plusButton">
+                                <rect key="frame" x="245" y="200" width="80" height="80"/>
+                                <color key="backgroundColor" systemColor="systemRedColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="80" id="plusWidth"/>
+                                    <constraint firstAttribute="height" constant="80" id="plusHeight"/>
+                                </constraints>
+                                <state key="normal" title="+"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="32"/>
+                                <color key="titleColor" systemColor="whiteColor"/>
+                                <color key="titleShadowColor" systemColor="whiteColor"/>
+                                <connections>
+                                    <action selector="plusButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="plusAction"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="custom" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="resetButton">
+                                <rect key="frame" x="147.5" y="200" width="80" height="80"/>
+                                <color key="backgroundColor" systemColor="systemGrayColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="80" id="resetWidth"/>
+                                    <constraint firstAttribute="height" constant="80" id="resetHeight"/>
+                                </constraints>
+                                <state key="normal" title="↺"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                <color key="titleColor" systemColor="whiteColor"/>
+                                <color key="titleShadowColor" systemColor="whiteColor"/>
+                                <connections>
+                                    <action selector="resetButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="resetAction"/>
+                                </connections>
+                            </button>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="YES" bounces="YES" alwaysBounceVertical="YES" textContainerInset="UIEdgeInsets(8, 8, 8, 8)" translatesAutoresizingMaskIntoConstraints="NO" id="historyTextView">
+                                <rect key="frame" x="20" y="320" width="335" height="327"/>
+                                <color key="backgroundColor" systemColor="systemGray6Color"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="counterLabel" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="labelCenterX"/>
+                            <constraint firstItem="counterLabel" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="100" id="labelTop"/>
+                            <constraint firstItem="minusButton" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="50" id="minusLeading"/>
+                            <constraint firstItem="minusButton" firstAttribute="top" secondItem="counterLabel" secondAttribute="bottom" constant="70" id="minusTop"/>
+                            <constraint firstItem="resetButton" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="resetCenterX"/>
+                            <constraint firstItem="resetButton" firstAttribute="top" secondItem="counterLabel" secondAttribute="bottom" constant="70" id="resetTop"/>
+                            <constraint firstItem="plusButton" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailing" constant="-50" id="plusTrailing"/>
+                            <constraint firstItem="plusButton" firstAttribute="top" secondItem="counterLabel" secondAttribute="bottom" constant="70" id="plusTop"/>
+                            <constraint firstItem="historyTextView" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="20" id="historyLeading"/>
+                            <constraint firstItem="historyTextView" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailing" constant="-20" id="historyTrailing"/>
+                            <constraint firstItem="historyTextView" firstAttribute="top" secondItem="minusButton" secondAttribute="bottom" constant="40" id="historyTop"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="historyTextView" secondAttribute="bottom" constant="20" id="historyBottom"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="counterLabel" destination="counterLabel" id="labelOutlet"/>
+                        <outlet property="historyTextView" destination="historyTextView" id="historyOutlet"/>
+                        <outlet property="minusButton" destination="minusButton" id="minusOutlet"/>
+                        <outlet property="plusButton" destination="plusButton" id="plusOutlet"/>
+                        <outlet property="resetButton" destination="resetButton" id="resetOutlet"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
